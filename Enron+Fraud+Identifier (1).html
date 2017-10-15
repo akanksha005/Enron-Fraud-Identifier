@@ -13580,7 +13580,7 @@ NB algorithm time: 0.005 s
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>When there is no splitting of dataset into Training and Testing set i.e. same data is used for classification and prediction can be seen below:</p>
+<h3 id="Using-whole-dataset-for-training-and-Testing">Using whole dataset for training and Testing<a class="anchor-link" href="#Using-whole-dataset-for-training-and-Testing">&#182;</a></h3><p>When there is no splitting of dataset into Training and Testing set i.e. same data is used for classification and prediction can be seen below:</p>
 
 </div>
 </div>
@@ -13627,9 +13627,9 @@ NB algorithm time: 0.005 s
 <p>Accuracy Score is increased to 1 but there are two problems when there is no splitting of dataset into Training and Testing data:</p>
 <ul>
 <li>Performance of the algorithm cannot be compared.</li>
-<li>Overfitting of Data .
-Therefore splitting the dataset into Training and testing dataset as shown below:</li>
+<li>Overfitting of Data .</li>
 </ul>
+<h3 id="Using-splitted-dataset-for-Training-and-Testing">Using splitted dataset for Training and Testing<a class="anchor-link" href="#Using-splitted-dataset-for-Training-and-Testing">&#182;</a></h3><p>Therefore splitting the dataset into Training and testing dataset as shown below:</p>
 
 </div>
 </div>
@@ -13767,18 +13767,101 @@ Recall: 0.222222222222
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There is no significant change when adding new features. When trying new subset of features by manually selecting different set of features as shown in below found the accuracy,precision and Recall increase significantly.</p>
-<h3 id="Manual-Selection-of-features">Manual Selection of features<a class="anchor-link" href="#Manual-Selection-of-features">&#182;</a></h3><p>Now manually selecting features having new features into consideration which increase the accuracy from 76 % to 92% .</p>
+<p>I see that the new features improved both precision and recall. Precision jumped from 0.20 to 0.40 and recall jumped from 0.125 to 0.222. So, this states that the new features improved performance and should probably be included in the final feature set.  When trying new subset of features by manually selecting different set of features as shown in below found the accuracy,precision and Recall increase significantly.</p>
+<h3 id="Manual-Selection-of-features">Manual Selection of features<a class="anchor-link" href="#Manual-Selection-of-features">&#182;</a></h3><p>Now manually selecting features having new features into consideration which increase the accuracy from 76 % to 92% and precision and recall from 0.4 t0 0.5 and 0.22 to 1 respectively.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[432]:</div>
+<div class="prompt input_prompt">In&nbsp;[449]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">features_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;poi&quot;</span><span class="p">,</span> <span class="s2">&quot;fraction_from_poi_email&quot;</span><span class="p">,</span> <span class="s2">&quot;fraction_to_poi_email&quot;</span><span class="p">,</span> <span class="s1">&#39;shared_receipt_with_poi&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">html</span>
+&lt;table&gt;
+&lt;tr&gt;
+&lt;th&gt;Features along with new features&lt;/th&gt;
+&lt;th&gt;Precision&lt;/th&gt;
+&lt;th&gt;Recall&lt;/th&gt;
+&lt;th&gt;Accuracy&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;stock features&lt;/td&gt;
+&lt;td&gt;0.125&lt;/td&gt;
+&lt;td&gt;.33&lt;/td&gt;
+&lt;td&gt;0.76&lt;/td&gt;
+
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;salary features&lt;/td&gt;
+&lt;td&gt;0.25&lt;/td&gt;
+&lt;td&gt;0.66&lt;/td&gt;
+&lt;td&gt;0.78&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Poi related features&lt;/td&gt;
+&lt;td&gt;.5&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0.92&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<tr>
+<th>Features along with new features</th>
+<th>Precision</th>
+<th>Recall</th>
+<th>Accuracy</th>
+</tr>
+<tr>
+<td>stock features</td>
+<td>0.125</td>
+<td>.33</td>
+<td>0.76</td>
+
+</tr>
+<tr>
+<td>salary features</td>
+<td>0.25</td>
+<td>0.66</td>
+<td>0.78</td>
+</tr>
+<tr>
+<td>Poi related features</td>
+<td>.5</td>
+<td>1</td>
+<td>0.92</td>
+</tr>
+</table>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[446]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#features_list = [&quot;poi&quot;, &quot;fraction_from_poi_email&quot;, &quot;fraction_to_poi_email&quot;, &#39;shared_receipt_with_poi&#39;]</span>
+<span class="c1"># features_list = [&quot;poi&quot;, &quot;fraction_from_poi_email&quot;, &quot;fraction_to_poi_email&quot;, &#39;exercised_stock_options&#39;,&#39;total_stock_value&#39;]</span>
+<span class="n">features_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;poi&quot;</span><span class="p">,</span> <span class="s2">&quot;fraction_from_poi_email&quot;</span><span class="p">,</span> <span class="s2">&quot;fraction_to_poi_email&quot;</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">,</span><span class="s1">&#39;bonus&#39;</span><span class="p">,</span><span class="s1">&#39;long_term_incentive&#39;</span><span class="p">]</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">featureFormat</span><span class="p">(</span><span class="n">data_dict</span><span class="p">,</span> <span class="n">features_list</span><span class="p">)</span>
 <span class="n">labels</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="n">targetFeatureSplit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="c1">### use KFold for split and validate algorithm</span>
@@ -13828,14 +13911,14 @@ Recall: 0.222222222222
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Accuracy when using Decision Tree Classifier: 0.923076923077
-DT algorithm time: 0.002 s
+<pre>Accuracy when using Decision Tree Classifier: 0.787878787879
+DT algorithm time: 0.003 s
 Precision: 0.5
-Recall: 1.0
-Accuracy when using Naive Bayes Classifier:0.807692307692
-Precision: 0.0
-Recall: 0.0
-NB algorithm time: 0.004 s
+Recall: 0.285714285714
+Accuracy when using Naive Bayes Classifier:0.878787878788
+Precision: 0.25
+Recall: 0.5
+NB algorithm time: 0.012 s
 </pre>
 </div>
 </div>
@@ -14019,7 +14102,9 @@ Recall: 0.375
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Validation-Of-Classifier">Validation Of Classifier<a class="anchor-link" href="#Validation-Of-Classifier">&#182;</a></h2><p>The validation of the algorithm performance is conducted use the tester function
-provided (without changing). The function uses cross validation with 1000 folds.
+provided (without changing). The function uses cross validation with 1000 folds.As the 
+data related to POIs is very less i.e. 18 POIs from 146 executives.Therefore 3 fold cross
+validation is used above and tester uses upto thousand folds to validate the classifier.
 Precision: precision is defined as the number true positive divided by the number of
 person labels as positive. A higher precision value means a person flag out as a POI is
 more likely to be a true POI. Recall: recall is defined as the number of true positive
@@ -14029,6 +14114,12 @@ the algorithm is more likely to flag this person out.</p>
 class imbalance problem : the number of POIs is small compared to the total number of
 examples in the dataset. So I had to use precision and recall for these activities instead.
 I was able to reach average value of precision = 0.6, recall = 0.771.</p>
+<p>As it can be clearly seen in above results if whole dataset is used for classification and
+prediction Then the result will be biased. 
+The accuracy will be high but there is no sureity that the classifier can predict
+well for future inputs or not. To varify this targetdatasplit is done as for training the
+classifier on training set and predicting on Testing dataset.The accuracy is also measured 
+on Testing dataset to validate the classifier.</p>
 
 </div>
 </div>
@@ -14139,10 +14230,8 @@ I was able to reach average value of precision = 0.6, recall = 0.771.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>There is usually a trade off between precision and recall. An algorithm strong at one
-metric may be weak at the other metric. So when it comes to decide which algorithm is
-better, it come to how do we define risk. Is it more risky to flag out as a POI who is
-actually not or is it more risky to miss a true POI? That is in the eyes of the beholder.</p>
+<p>It can be seen that with less tuning the value of precision and recall is less and as the parameter is tuned the accuracy metrics increases but if the parameter is overtuned the precision &amp; recall decreases. Therefore value of parameter has to be decided carefully.
+There is usually a trade off between precision and recall. An algorithm strong at one metric may be weak at the other metric. So when it comes to decide which algorithm is better, it come to how do we define risk. Is it more risky to flag out as a POI who is actually not or is it more risky to miss a true POI? That is in the eyes of the beholder.</p>
 
 </div>
 </div>
