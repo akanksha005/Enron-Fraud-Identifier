@@ -92,21 +92,21 @@ matplotlib.pyplot.show()
 ### create new features
 ### new features are: fraction_to_poi_email,fraction_from_poi_email
 
-def dict_to_list(key,normalizer):
-    new_list=[]
+def listing_dictionary(key,nor):
+    a=[]
 
     for i in data_dict:
-        if data_dict[i][key]=="NaN" or data_dict[i][normalizer]=="NaN":
-            new_list.append(0.)
+        if data_dict[i][key]=="NaN" or data_dict[i][nor]=="NaN":
+            a.append(0.)
         elif data_dict[i][key]>=0:
-            new_list.append(float(data_dict[i][key])/float(data_dict[i][normalizer]))
-    return new_list
+            a.append(float(data_dict[i][key])/float(data_dict[i][nor]))
+    return a
 
-### create two lists of new features
-fraction_from_poi_email=dict_to_list("from_poi_to_this_person","to_messages")
-fraction_to_poi_email=dict_to_list("from_this_person_to_poi","from_messages")
+### creating two lists of new features
+fraction_from_poi_email=listing_dictionary("from_poi_to_this_person","to_messages")
+fraction_to_poi_email=listing_dictionary("from_this_person_to_poi","from_messages")
 
-### insert new features into data_dict
+### inserting new features into data_dict
 count=0
 for i in data_dict:
     data_dict[i]["fraction_from_poi_email"]=fraction_from_poi_email[count]

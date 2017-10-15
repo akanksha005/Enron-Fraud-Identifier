@@ -4,3 +4,6 @@ References:
 https://classroom.udacity.com/nanodegrees/
 http://scikit-learn.org/ 
 stackoverflow.com
+http://www.olehdubno.com/on-line-coursework/identifying-and-removing-outliers-enron-dataset
+https://github.com/jasonicarter/DAND_Enron_Email_Data_Machine_Learning/blob/master/final_project/Submission_Report.md
+https://github.com/Dalaska/Udacity-Enron-Fraud-Machine-Learning/blob/master/POIIndentifictionReport.pdf
