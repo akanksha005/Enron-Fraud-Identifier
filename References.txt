@@ -1,0 +1,6 @@
+
+References:
+
+https://classroom.udacity.com/nanodegrees/
+http://scikit-learn.org/ 
+stackoverflow.com
