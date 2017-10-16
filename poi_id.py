@@ -189,8 +189,16 @@ print "Recall: "+str(recall_score(pred,labels_test))
 #parameter Tuning
 def dt_min_samples_split(k):
     t0 = time()
-
-    clf=DecisionTreeClassifier(min_samples_split=k)
+    ### use KFold for split and validate algorithm
+	from sklearn.cross_validation import KFold
+	kf=KFold(len(labels),3)
+	for train_indices, test_indices in kf:
+		#make training and testing sets
+		features_train= [features[ii] for ii in train_indices]
+		features_test= [features[ii] for ii in test_indices]
+		labels_train=[labels[ii] for ii in train_indices]
+		labels_test=[labels[ii] for ii in test_indices]
+	clf=DecisionTreeClassifier(min_samples_split=k)
     clf.fit(features_train,labels_train)
     pred=clf.predict(features_test)
 
@@ -202,12 +210,12 @@ def dt_min_samples_split(k):
     print "Precision: " +str(precision_score(pred,labels_test))
     print "Recall: "+str(recall_score(pred,labels_test))
     
-dt_min_samples_split(2)
+# dt_min_samples_split(2)
 dt_min_samples_split(3)
-dt_min_samples_split(5)
-dt_min_samples_split(10)
-dt_min_samples_split(15)
-dt_min_samples_split(20)
+# dt_min_samples_split(5)
+# dt_min_samples_split(10)
+# dt_min_samples_split(15)
+# dt_min_samples_split(20)
 
 test_classifier(clf, my_dataset, features_list, folds = 1000)
 dump_classifier_and_data(clf, my_dataset, features_list)

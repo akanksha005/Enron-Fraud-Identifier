@@ -13575,65 +13575,6 @@ NB algorithm time: 0.005 s
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Using-whole-dataset-for-training-and-Testing">Using whole dataset for training and Testing<a class="anchor-link" href="#Using-whole-dataset-for-training-and-Testing">&#182;</a></h3><p>When there is no splitting of dataset into Training and Testing set i.e. same data is used for classification and prediction can be seen below:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[416]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">clf</span><span class="o">=</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
-<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">,</span><span class="n">labels</span><span class="p">)</span>
-<span class="n">pred</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
-
-
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
-<span class="n">acc</span><span class="o">=</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span><span class="n">labels</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">acc</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>1.0
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Accuracy Score is increased to 1 but there are two problems when there is no splitting of dataset into Training and Testing data:</p>
-<ul>
-<li>Performance of the algorithm cannot be compared.</li>
-<li>Overfitting of Data .</li>
-</ul>
-<h3 id="Using-splitted-dataset-for-Training-and-Testing">Using splitted dataset for Training and Testing<a class="anchor-link" href="#Using-splitted-dataset-for-Training-and-Testing">&#182;</a></h3><p>Therefore splitting the dataset into Training and testing dataset as shown below:</p>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[417]:</div>
@@ -13775,7 +13716,7 @@ Recall: 0.222222222222
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[449]:</div>
+<div class="prompt input_prompt">In&nbsp;[451]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="o">%%</span><span class="k">html</span>
@@ -13846,22 +13787,40 @@ Recall: 0.222222222222
 <td>0.92</td>
 </tr>
 </table>
-</div>
 
 </div>
 
 </div>
+
+</div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Salary features with new features include :
+Features_list = ["poi", "fraction_from_poi_email", "fraction_to_poi_email", 'salary','bonus','long_term_incentive']</p>
+<p>Poi related features with new features include:
+Features_list = ["poi", "fraction_from_poi_email", "fraction_to_poi_email", 'shared_receipt_with_poi']</p>
+<p>Stock features with new features include:
+Features_list = ["poi", "fraction_from_poi_email", "fraction_to_poi_email", 'exercised_stock_options','total_stock_value']</p>
+<p>Now in the Table it can be seen that precision,recall and accuracy of new features with POI related features is
+increased considerably.Therefore used them as Final features list in the Decision Tree classifier.</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[446]:</div>
+<div class="prompt input_prompt">In&nbsp;[452]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#features_list = [&quot;poi&quot;, &quot;fraction_from_poi_email&quot;, &quot;fraction_to_poi_email&quot;, &#39;shared_receipt_with_poi&#39;]</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">features_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;poi&quot;</span><span class="p">,</span> <span class="s2">&quot;fraction_from_poi_email&quot;</span><span class="p">,</span> <span class="s2">&quot;fraction_to_poi_email&quot;</span><span class="p">,</span> <span class="s1">&#39;shared_receipt_with_poi&#39;</span><span class="p">]</span>
 <span class="c1"># features_list = [&quot;poi&quot;, &quot;fraction_from_poi_email&quot;, &quot;fraction_to_poi_email&quot;, &#39;exercised_stock_options&#39;,&#39;total_stock_value&#39;]</span>
-<span class="n">features_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;poi&quot;</span><span class="p">,</span> <span class="s2">&quot;fraction_from_poi_email&quot;</span><span class="p">,</span> <span class="s2">&quot;fraction_to_poi_email&quot;</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">,</span><span class="s1">&#39;bonus&#39;</span><span class="p">,</span><span class="s1">&#39;long_term_incentive&#39;</span><span class="p">]</span>
+<span class="c1"># features_list = [&quot;poi&quot;, &quot;fraction_from_poi_email&quot;, &quot;fraction_to_poi_email&quot;, &#39;salary&#39;,&#39;bonus&#39;,&#39;long_term_incentive&#39;]</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">featureFormat</span><span class="p">(</span><span class="n">data_dict</span><span class="p">,</span> <span class="n">features_list</span><span class="p">)</span>
 <span class="n">labels</span><span class="p">,</span> <span class="n">features</span> <span class="o">=</span> <span class="n">targetFeatureSplit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="c1">### use KFold for split and validate algorithm</span>
@@ -13911,14 +13870,14 @@ Recall: 0.222222222222
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Accuracy when using Decision Tree Classifier: 0.787878787879
-DT algorithm time: 0.003 s
+<pre>Accuracy when using Decision Tree Classifier: 0.923076923077
+DT algorithm time: 0.379 s
 Precision: 0.5
-Recall: 0.285714285714
-Accuracy when using Naive Bayes Classifier:0.878787878788
-Precision: 0.25
-Recall: 0.5
-NB algorithm time: 0.012 s
+Recall: 1.0
+Accuracy when using Naive Bayes Classifier:0.807692307692
+Precision: 0.0
+Recall: 0.0
+NB algorithm time: 0.036 s
 </pre>
 </div>
 </div>
@@ -14015,8 +13974,8 @@ NB algorithm time: 0.012 s
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Parameter-Tuning">Parameter Tuning<a class="anchor-link" href="#Parameter-Tuning">&#182;</a></h2><p>Tuning is changing values of parameters present in the classifier to get optimal accuracy matrics
-and comparing them to get best classifier.
-In this dataset I cannot use accuracy for evaluating my algorithm because there a few POI’s in
+and comparing them to get best classifier.</p>
+<p>In this dataset I cannot use accuracy for evaluating my algorithm because there a few POI’s in
 dataset and the best evaluator are precision and recall. There were only 18 examples of POIs in
 the dataset. There were 35 people who were POIs in “real life”, but for various reasons, half of
 those are not present in this dataset.Therefore kfold is used with the classifier.</p>
@@ -14095,34 +14054,6 @@ Recall: 0.375
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Validation-Of-Classifier">Validation Of Classifier<a class="anchor-link" href="#Validation-Of-Classifier">&#182;</a></h2><p>The validation of the algorithm performance is conducted use the tester function
-provided (without changing). The function uses cross validation with 1000 folds.As the 
-data related to POIs is very less i.e. 18 POIs from 146 executives.Therefore 3 fold cross
-validation is used above and tester uses upto thousand folds to validate the classifier.
-Precision: precision is defined as the number true positive divided by the number of
-person labels as positive. A higher precision value means a person flag out as a POI is
-more likely to be a true POI. Recall: recall is defined as the number of true positive
-divided by the total number of positive. A higher recall value mean if a person is a POI,
-the algorithm is more likely to flag this person out.</p>
-<p>First I used accuracy to evaluate my algorithm. It was a mistake because in this case we have a
-class imbalance problem : the number of POIs is small compared to the total number of
-examples in the dataset. So I had to use precision and recall for these activities instead.
-I was able to reach average value of precision = 0.6, recall = 0.771.</p>
-<p>As it can be clearly seen in above results if whole dataset is used for classification and
-prediction Then the result will be biased. 
-The accuracy will be high but there is no sureity that the classifier can predict
-well for future inputs or not. To varify this targetdatasplit is done as for training the
-classifier on training set and predicting on Testing dataset.The accuracy is also measured 
-on Testing dataset to validate the classifier.</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -14230,8 +14161,98 @@ on Testing dataset to validate the classifier.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>It can be seen that with less tuning the value of precision and recall is less and as the parameter is tuned the accuracy metrics increases but if the parameter is overtuned the precision &amp; recall decreases. Therefore value of parameter has to be decided carefully.
-There is usually a trade off between precision and recall. An algorithm strong at one metric may be weak at the other metric. So when it comes to decide which algorithm is better, it come to how do we define risk. Is it more risky to flag out as a POI who is actually not or is it more risky to miss a true POI? That is in the eyes of the beholder.</p>
+<p>One thing about the decision trees need to be mention, it might have a tendency in overfitting, since the min sample split is low.Because the size of the data set is limited (only 18 POIs), although the tester use cross validation, we cannot know for sure whether the data has been overfitted.</p>
+<p>It can be seen that with less tuning the value of precision and recall is less and as the parameter is tuned the accuracy metrics increases but if the parameter is overtuned the precision &amp; recall decreases. Therefore value of parameter has to be decided carefully.</p>
+<p>There is usually a trade off between precision and recall. An algorithm strong at one metric may be weak at the other metric. So when it comes to decide which algorithm is better, it come to how do we define risk. Is it more risky to flag out as a POI who is actually not or is it more risky to miss a true POI? That is in the eyes of the beholder.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Validation-Of-Classifier">Validation Of Classifier<a class="anchor-link" href="#Validation-Of-Classifier">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Using-whole-dataset-for-training-and-Testing">Using whole dataset for training and Testing<a class="anchor-link" href="#Using-whole-dataset-for-training-and-Testing">&#182;</a></h3><p>When there is no splitting of dataset into Training and Testing set i.e. same data is used for classification and prediction can be seen below:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[453]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">clf</span><span class="o">=</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">,</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">pred</span><span class="o">=</span><span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+<span class="n">acc</span><span class="o">=</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">pred</span><span class="p">,</span><span class="n">labels</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">acc</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Accuracy Score is increased to 1 but there are two problems when there is no splitting of dataset into Training and Testing data :</p>
+<ul>
+<li>Performance of the algorithm cannot be compared.
+As it can be clearly seen in above results if whole dataset is used for classification and
+prediction Then the result will be biased. 
+The accuracy will be high but there is no sureity that the classifier can predict
+well for future inputs or not. To varify this targetdatasplit is done as for training the
+classifier on training set and predicting on Testing dataset.The accuracy is also measured 
+on Testing dataset to validate the classifier.</li>
+<li>Overfitting of Data.
+In our case chances of overfitting are less as there are 18 POIs in 146 executives.Therefore need of <em>Kfold</em> method of cross validation so that classifier can be validated.</li>
+</ul>
+<h3 id="Using-splitted-dataset-for-Training-and-Testing">Using splitted dataset for Training and Testing<a class="anchor-link" href="#Using-splitted-dataset-for-Training-and-Testing">&#182;</a></h3><p>Therefore splitting the dataset into Training and testing dataset Performance can be easily 
+compared as shown above. The validation of the algorithm performance is conducted use the tester 
+function provided. The function uses cross validation with 1000 folds.As the 
+data related to POIs is very less i.e. 18 POIs from 146 executives.Therefore 3 fold cross
+validation is used above and tester uses upto thousand folds(<em>kfold cross validation</em>) to validate the classifier
+on smaller dataset.</p>
+<p>Precision: precision is defined as the number true positive divided by the number of
+person labels as positive. A higher precision value means a person flag out as a POI is
+more likely to be a true POI. Recall: recall is defined as the number of true positive
+divided by the total number of positive. A higher recall value mean if a person is a POI,
+the algorithm is more likely to flag this person out.</p>
+<p>First I used accuracy to evaluate my algorithm. It was a mistake because in this case we have a
+class imbalance problem : the number of POIs is small compared to the total number of
+examples in the dataset. So I had to use precision and recall for these activities instead.
+I was able to reach average value of precision = 0.6, recall = 0.771.</p>
 
 </div>
 </div>
