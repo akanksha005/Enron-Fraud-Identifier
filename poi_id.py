@@ -185,30 +185,28 @@ print "Accuracy when using Decision Tree Classifier: " + str(acc)
 print "DT algorithm time:", round(time()-t0, 3), "s"
 print "Precision: " +str(precision_score(pred,labels_test))
 print "Recall: "+str(recall_score(pred,labels_test))
+### use KFold for split and validate algorithm
+from sklearn.cross_validation import KFold
+kf=KFold(len(labels),3)
+for train_indices, test_indices in kf:
+	#make training and testing sets
+	features_train= [features[ii] for ii in train_indices]
+	features_test= [features[ii] for ii in test_indices]
+	labels_train=[labels[ii] for ii in train_indices]
+	labels_test=[labels[ii] for ii in test_indices]
 
 #parameter Tuning
 def dt_min_samples_split(k):
-    t0 = time()
-    ### use KFold for split and validate algorithm
-	from sklearn.cross_validation import KFold
-	kf=KFold(len(labels),3)
-	for train_indices, test_indices in kf:
-		#make training and testing sets
-		features_train= [features[ii] for ii in train_indices]
-		features_test= [features[ii] for ii in test_indices]
-		labels_train=[labels[ii] for ii in train_indices]
-		labels_test=[labels[ii] for ii in test_indices]
+	t0 = time()
 	clf=DecisionTreeClassifier(min_samples_split=k)
-    clf.fit(features_train,labels_train)
-    pred=clf.predict(features_test)
-
-    from sklearn.metrics import accuracy_score,precision_score,recall_score
-    acc=accuracy_score(pred,labels_test)
-
-    print "Accuracy when using Decision Tree Classifier: " + str(acc)
-    print "DT algorithm time:", round(time()-t0, 3), "s"
-    print "Precision: " +str(precision_score(pred,labels_test))
-    print "Recall: "+str(recall_score(pred,labels_test))
+	clf.fit(features_train,labels_train)
+	pred=clf.predict(features_test)
+	from sklearn.metrics import accuracy_score,precision_score,recall_score
+	acc=accuracy_score(pred,labels_test)
+	print "Accuracy when using Decision Tree Classifier: " + str(acc)
+	print "DT algorithm time:", round(time()-t0, 3), "s"
+	print "Precision: " +str(precision_score(pred,labels_test))
+	print "Recall: "+str(recall_score(pred,labels_test))
     
 # dt_min_samples_split(2)
 dt_min_samples_split(3)

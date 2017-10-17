@@ -14241,8 +14241,9 @@ In our case chances of overfitting are less as there are 18 POIs in 146 executiv
 <h3 id="Using-splitted-dataset-for-Training-and-Testing">Using splitted dataset for Training and Testing<a class="anchor-link" href="#Using-splitted-dataset-for-Training-and-Testing">&#182;</a></h3><p>Therefore splitting the dataset into Training and testing dataset Performance can be easily 
 compared as shown above. The validation of the algorithm performance is conducted use the tester 
 function provided. The function uses cross validation with 1000 folds.As the 
-data related to POIs is very less i.e. 18 POIs from 146 executives.Therefore 3 fold cross
-validation is used above and tester uses upto thousand folds(<em>kfold cross validation</em>) to validate the classifier
+data related to POIs is very less i.e. 18 POIs from 146 executives.In this project, we are dealing with a small and imbalanced dataset.Working with smaller datasets is hard and in order to make validation models robust, we often go with k-fold cross-validation, which is what we do when we use a shuffle split.
+But well, in this project (and so many others we have in our day to day work), a stratified shuffle split is of choice. When dealing with small imbalanced datasets, it is possible that some folds contain almost none (or even none!) instances of the minority class. The idea behind stratification is to keep the percentage of the target class as close as possible to the one we have in the complete dataset.Therefore 3 fold cross
+validation is used above(<em>kfold cross validation</em>) and tester uses upto thousand folds(<em>stratifiedshufflesplit cross validation</em>) to validate the classifier
 on smaller dataset.</p>
 <p>Precision: precision is defined as the number true positive divided by the number of
 person labels as positive. A higher precision value means a person flag out as a POI is
